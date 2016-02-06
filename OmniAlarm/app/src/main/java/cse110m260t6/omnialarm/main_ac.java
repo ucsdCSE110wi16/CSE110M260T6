@@ -8,9 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class main_ac extends AppCompatActivity {
 
+    Button addAlarm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,9 @@ public class main_ac extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        //find the button by id
+        addAlarm = (Button)findViewById(R.id.addBtn);
+        /*set button activity(select day and time */
     }
 
     @Override
