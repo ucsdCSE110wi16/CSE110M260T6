@@ -1,5 +1,6 @@
 package cse110m260t6.omnialarm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +13,11 @@ import android.widget.Button;
 
 public class main_ac extends AppCompatActivity {
 
-    Button addAlarm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ac);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -28,10 +31,22 @@ public class main_ac extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
         //find the button by id
-        addAlarm = (Button)findViewById(R.id.addBtn);
-        /*set button activity(select day and time */
+        Button addAlarm = (Button) findViewById(R.id.addBtn);
+        //Button selectDate = (Button) findViewById(R.id.select_date);
+
+        addAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.addAlarm.class);
+                startActivityForResult(addActivity, 0);
+            }
+        });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
