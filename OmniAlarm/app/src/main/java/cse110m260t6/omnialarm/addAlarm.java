@@ -6,6 +6,7 @@ import android.widget.Button;
 
 /**
  * Created by dadongjing on 2/6/16.
+ * Test push by Jinhua Chen
  */
 public class addAlarm extends AppCompatActivity{
 
