@@ -35,7 +35,6 @@ public class main_ac extends AppCompatActivity {
 
         //find the button by id
         Button addAlarm = (Button) findViewById(R.id.addBtn);
-        //Button selectDate = (Button) findViewById(R.id.select_date);
 
         addAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
