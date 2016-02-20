@@ -1,5 +1,8 @@
 package cse110m260t6.omnialarm;
 
+import android.app.Application;
+import android.support.v7.app.AppCompatActivity;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -7,11 +10,11 @@ import java.util.Calendar;
  * Created by dadongjing on 2/8/16.
  */
 
-public class Alarm implements Serializable {
+public class Alarm extends Application {
 
     private Boolean[] activity = new Boolean[7];    /* indicates which days to activite */
     private Calendar Time = Calendar.getInstance(); /* Time of the alarm */
-
+    private String RingTone;
 
     /* default empty constructor */
     public Alarm(){
@@ -54,6 +57,16 @@ public class Alarm implements Serializable {
         }
         returnTime += String.valueOf(Time.get(Calendar.MINUTE));
         return returnTime;
+    }
+
+    /* get the ringtone path */
+    public String getRingTone(){
+        return this.RingTone;
+    }
+
+    /* set the ringtone for the alarm */
+    public void setRingTone(String ringTone){
+        this.RingTone = ringTone;
     }
 
 

@@ -6,11 +6,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Time"
-        android:id="@+id/Choose_time" />
-
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker2" />
+        android:text="Choose Ring Tone"
+        android:id="@+id/choose_music" />
 </LinearLayout>
