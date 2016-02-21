@@ -13,10 +13,11 @@ import android.widget.Button;
 
 public class main_ac extends AppCompatActivity {
 
+    //Database alarmDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //alarmDB = new Database(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ac);
@@ -33,6 +34,16 @@ public class main_ac extends AppCompatActivity {
         });
 
 
+        Database.init(main_ac.this);
+        Alarm tempAlarm = new Alarm();
+        String time = "09:10";
+        tempAlarm.setTimeS(time);
+        Database.updateTemp(tempAlarm);
+
+        Alarm testAlarm;
+        testAlarm = Database.getTempAlarm();
+
+        System.err.print(testAlarm.getTimeString() == tempAlarm.getTimeString());
         //find the button by id
         Button addAlarm = (Button) findViewById(R.id.addBtn);
 
