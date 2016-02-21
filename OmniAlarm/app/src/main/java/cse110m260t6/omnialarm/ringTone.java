@@ -21,18 +21,33 @@ public class ringTone extends AppCompatActivity{
 
 
         //find the button by id
-        Choose_ringTone = (Button)findViewById(R.id.Choose_time);
+        Choose_ringTone = (Button)findViewById(R.id.choose_music);
 
-        /* choose ring tone button logic design */
+        /* choose ring tone button logic design
         Choose_ringTone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get the default alarm from db
+
+
+
+
+                //set the ringtone path to the default alarm
+
+
+
+
+                //put the update default alarm back to database
+
+
+
+                //advance to the next page to select wake up activity
 
 
             }
         });
 
-
+*/
 
     }
 
