@@ -10,14 +10,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class main_ac extends AppCompatActivity {
 
-    //Database alarmDB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //alarmDB = new Database(this);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ac);
@@ -39,11 +40,20 @@ public class main_ac extends AppCompatActivity {
         String time = "09:10";
         tempAlarm.setTimeS(time);
         Database.updateTemp(tempAlarm);
+        String timeC = "12:10";
+        tempAlarm.setTimeS(timeC);
 
         Alarm testAlarm;
         testAlarm = Database.getTempAlarm();
 
-        System.err.print(testAlarm.getTimeString() == tempAlarm.getTimeString());
+
+        TextView time1 = (TextView)findViewById(R.id.timeString);
+        time1.setText(tempAlarm.getTimeString());
+
+        TextView time2 = (TextView)findViewById(R.id.timeString2);
+        time2.setText(testAlarm.getTimeString());
+
+
         //find the button by id
         Button addAlarm = (Button) findViewById(R.id.addBtn);
 
@@ -51,7 +61,7 @@ public class main_ac extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent addActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.addAlarm.class);
-                startActivityForResult(addActivity, 0);
+                startActivity(addActivity);
             }
         });
     }

@@ -46,23 +46,23 @@ public class Database extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS" + FINAL_TABLE + "("
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + FINAL_TABLE + "("
                    + COLUMN_0 + " INTEGER primary key autoincrement, "
                    + COLUMN_1 + " TEXT, "
                    + COLUMN_2 + " TEXT, "
                    + COLUMN_3 + " TEXT)");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS" + TEMP_TABLE + "("
-                   + COLUMN_0 + " INTEGER primary key autoincrement, "
-                   + COLUMN_1 + " TEXT, "
-                   + COLUMN_2 + " TEXT, "
-                   + COLUMN_3 + " TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TEMP_TABLE + "("
+                + COLUMN_0 + " INTEGER primary key autoincrement, "
+                + COLUMN_1 + " TEXT, "
+                + COLUMN_2 + " TEXT, "
+                + COLUMN_3 + " TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + FINAL_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS" + TEMP_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + FINAL_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TEMP_TABLE);
 
         onCreate(db);
     }
@@ -161,23 +161,28 @@ public class Database extends SQLiteOpenHelper{
     /* getter for the actual valid alarm */
     public static Alarm getAlarm(){
         SQLiteDatabase db = getDataBase();
-        Cursor alarmCursor = db.rawQuery("select * from" + FINAL_TABLE, null);
-
-        String Time = alarmCursor.getString(1);
-        String ringtone = alarmCursor.getString(2);
-        String wake_up_activity = alarmCursor.getString(3);
-        Alarm returnAlarm = new Alarm(Time,ringtone,wake_up_activity);
+        Cursor alarmCursor = db.rawQuery("select * from " + FINAL_TABLE, null);
+        Alarm returnAlarm = null;
+        if(alarmCursor.moveToFirst()) {
+            String Time = alarmCursor.getString(2);
+            String ringtone = alarmCursor.getString(3);
+            String wake_up_activity = alarmCursor.getString(4);
+            returnAlarm = new Alarm(Time, ringtone, wake_up_activity);
+        }
         return returnAlarm;
     }
 
     /* getter for the temp alarm */
     public static Alarm getTempAlarm(){
         SQLiteDatabase db = getDataBase();
-        Cursor alarmCursor = db.rawQuery("select * from" + TEMP_TABLE, null);
-        String Time = alarmCursor.getString(1);
-        String ringtone = alarmCursor.getString(2);
-        String wake_up_activity = alarmCursor.getString(3);
-        Alarm returnAlarm = new Alarm(Time,ringtone,wake_up_activity);
+        Alarm returnAlarm = null;
+        Cursor alarmCursor = db.rawQuery("select * from " + TEMP_TABLE, null);
+        if(alarmCursor.moveToFirst()) {
+            String Time = alarmCursor.getString(1);
+            String ringtone = alarmCursor.getString(2);
+            String wake_up_activity = alarmCursor.getString(3);
+            returnAlarm = new Alarm(Time, ringtone, wake_up_activity);
+        }
         return returnAlarm;
     }
 /*
