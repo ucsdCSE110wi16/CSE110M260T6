@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".addAlarm"></activity>
+        <activity android:name=".ringTone"></activity>
     </application>
 
 </manifest>

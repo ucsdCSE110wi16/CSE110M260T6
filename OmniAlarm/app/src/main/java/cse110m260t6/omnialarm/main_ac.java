@@ -20,6 +20,7 @@ public class main_ac extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ac);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,6 +32,15 @@ public class main_ac extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        
+
+
+        //create a default alarm for future edit
+        //Alarm myAlarm = new Alarm();
+
+        //store this default alarm in the database
+
+
 
 
         //find the button by id
@@ -43,6 +53,8 @@ public class main_ac extends AppCompatActivity {
                 startActivityForResult(addActivity, 0);
             }
         });
+
+
     }
 
 
