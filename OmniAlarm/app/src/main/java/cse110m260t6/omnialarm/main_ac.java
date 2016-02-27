@@ -41,7 +41,7 @@ public class main_ac extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent addActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.addAlarm.class);
-                startActivityForResult(addActivity, 0);
+                startActivity(addActivity);
             }
         });
 
