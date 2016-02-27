@@ -6,6 +6,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -16,6 +17,8 @@ import java.util.Calendar;
 public class addAlarm extends AppCompatActivity{
 
         Button choose_time;
+        TextView T1;
+        TextView T2;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +36,18 @@ public class addAlarm extends AppCompatActivity{
                     /* for the time picker, we need to check if it support API 16. Otherwise,
                      * we are going to use text box in the xml file to obtain hour and minute.
                      */
-                    /*
-                    TimePicker myTimeP = (TimePicker) findViewById(R.id.timePicker2);
-                    int hour = myTimeP.getHour();
-                    int minute = myTimeP.getMinute();
-                    */
 
-                    //Calendar myCa = Calendar.getInstance();
-                    //myCa.set(0,0,0,hour,minute);
+                    //get the hour and minute user specified
+                    T1.findViewById(R.id.hour);
+                    T2.findViewById(R.id.minute);
+                    String hour = T1.getText().toString();
+                    String minute = T2.getText().toString();
 
-                    //get the default alarm from the database
-                    //Alarm myAlarm = getAlarm(0);
-                    //myAlarm.setTime(myCa);
-                    //
+                    //set up the calendar object of the specified hour and minute
+                    Calendar myCa = Calendar.getInstance();
+                    myCa.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
+                    myCa.set(Calendar.MINUTE,Integer.parseInt(minute));
+
 
 
                     //jump to next page that prompt user to enter ring tone
