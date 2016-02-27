@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".addAlarm"></activity>
         <activity android:name=".ringTone"></activity>
+        <activity android:name=".wakeupAc"></activity>
+
     </application>
 
 </manifest>

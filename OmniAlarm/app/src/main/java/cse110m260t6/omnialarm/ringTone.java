@@ -23,14 +23,13 @@ public class ringTone extends AppCompatActivity{
         //find the button by id
         Choose_ringTone = (Button)findViewById(R.id.choose_music);
 
-        /* choose ring tone button logic design
+        //choose ring tone button logic design
         Choose_ringTone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //get the default alarm from db
-
-
-
+                Alarm myAl = Database.getTempAlarm();
 
                 //set the ringtone path to the default alarm
 
@@ -38,16 +37,16 @@ public class ringTone extends AppCompatActivity{
 
 
                 //put the update default alarm back to database
-
-
+                Database.updateTemp(myAl);
 
                 //advance to the next page to select wake up activity
-
+                Intent jumAc = new Intent(v.getContext(),cse110m260t6.omnialarm.wakeupAc.class);
+                startActivity(jumAc);
 
             }
         });
 
-*/
+
 
     }
 
