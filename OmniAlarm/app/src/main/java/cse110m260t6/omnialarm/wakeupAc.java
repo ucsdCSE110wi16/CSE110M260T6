@@ -1,7 +1,9 @@
 package cse110m260t6.omnialarm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 /**
@@ -17,5 +19,12 @@ public class wakeupAc extends AppCompatActivity{
 
         Choose_wakeup = (Button)findViewById(R.id.choose_wake_up);
 
+        Choose_wakeup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent jumAc = new Intent(v.getContext(),cse110m260t6.omnialarm.main_ac.class);
+                startActivity(jumAc);
+            }
+        });
     }
 }
