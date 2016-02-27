@@ -139,4 +139,18 @@ public class Database extends SQLiteOpenHelper{
         SQLiteDatabase db = getDataBase();
         return db.delete(FINAL_TABLE, "ID = ?", new String[]{id});
     }
+
+    public static boolean checkForEmpty(){
+        SQLiteDatabase db = getDataBase();
+        Cursor myCur = db.rawQuery("SELECT * FROM " + FINAL_TABLE,null);
+        Boolean exist;
+        if(myCur.moveToFirst()){
+            exist = true;
+        }
+        else{
+            exist = false;
+        }
+        return exist;
+    }
+    
 }
