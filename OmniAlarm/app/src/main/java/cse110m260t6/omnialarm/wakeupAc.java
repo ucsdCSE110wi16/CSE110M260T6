@@ -33,6 +33,7 @@ public class wakeupAc extends AppCompatActivity{
                 //store the alarm back to the final table
                 Database.insertAlarm(myAl);
 
+
                 //jump back to main page
                 Intent jumAc = new Intent(v.getContext(),cse110m260t6.omnialarm.main_ac.class);
                 startActivity(jumAc);

@@ -31,4 +31,49 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/select_date"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="83dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/TV1"
+                android:layout_column="3" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete All Alarm"
+        android:id="@+id/delete_alarm"
+        android:layout_alignTop="@+id/select_date"
+        android:layout_toRightOf="@+id/addBtn"
+        android:layout_toEndOf="@+id/addBtn" />
+
 </RelativeLayout>

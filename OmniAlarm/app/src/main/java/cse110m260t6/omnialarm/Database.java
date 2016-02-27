@@ -76,35 +76,41 @@ public class Database extends SQLiteOpenHelper{
 
     /* update method for temp alarm */
     public static long updateTemp(Alarm alarm){
-        //SQLiteDatabase db = getDataBase();
+        SQLiteDatabase db = getDataBase();
+        Cursor alarmCurrsor = db.rawQuery("select * from " + TEMP_TABLE, null);
         ContentValues contentValues = new ContentValues();
+        
 
         contentValues.put(COLUMN_1,alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
         contentValues.put(COLUMN_3," ");
 
-        return getDataBase().insert(TEMP_TABLE, null, contentValues);
+        String where = "id=1";
+
+        if(alarmCurrsor == null){
+            return db.insert(TEMP_TABLE,null,contentValues);
+        }
+        else{
+            return db.update(TEMP_TABLE,contentValues,where,null);
+        }
 
     }
 
 
 
+
     /*insert settings to final table  */
-    public static boolean insertAlarm(Alarm alarm){
-        SQLiteDatabase db = getDataBase();
+    public static long insertAlarm(Alarm alarm){
         ContentValues contentValues = new ContentValues();
+
 
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2, " ");
         contentValues.put(COLUMN_3, " ");
 
-        long checking = db.insert(FINAL_TABLE, null, contentValues);
-        //check if we create a table successfully
-        if(checking == -1){
-            return false;
-        }
-        else
-            return true;
+        return getDataBase().insert(FINAL_TABLE, null, contentValues);
+
+
     }
 
     /* getter for the actual valid alarm */
@@ -113,9 +119,9 @@ public class Database extends SQLiteOpenHelper{
         Cursor alarmCursor = db.rawQuery("select * from " + FINAL_TABLE, null);
         Alarm returnAlarm = null;
         if(alarmCursor.moveToFirst()) {
-            String Time = alarmCursor.getString(2);
-            String ringtone = alarmCursor.getString(3);
-            String wake_up_activity = alarmCursor.getString(4);
+            String Time = alarmCursor.getString(1);
+            String ringtone = alarmCursor.getString(2);
+            String wake_up_activity = alarmCursor.getString(3);
             returnAlarm = new Alarm(Time, ringtone, wake_up_activity);
         }
         return returnAlarm;
@@ -140,9 +146,9 @@ public class Database extends SQLiteOpenHelper{
         return db.delete(FINAL_TABLE, "ID = ?", new String[]{id});
     }
 
-    public static boolean checkForEmpty(){
+    public static boolean checkForExist(){
         SQLiteDatabase db = getDataBase();
-        Cursor myCur = db.rawQuery("SELECT * FROM " + FINAL_TABLE,null);
+        Cursor myCur = db.rawQuery("SELECT * FROM " + FINAL_TABLE, null);
         Boolean exist;
         if(myCur.moveToFirst()){
             exist = true;
@@ -152,5 +158,10 @@ public class Database extends SQLiteOpenHelper{
         }
         return exist;
     }
-    
+
+    public static void deleteAll(){
+        getDataBase().delete(FINAL_TABLE,null,null);
+        getDataBase().delete(TEMP_TABLE,null,null);
+    }
+
 }

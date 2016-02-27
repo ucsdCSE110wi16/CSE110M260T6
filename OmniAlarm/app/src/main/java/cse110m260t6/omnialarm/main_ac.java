@@ -8,10 +8,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.nio.channels.AlreadyConnectedException;
 
 public class main_ac extends AppCompatActivity {
 
 
+    TextView time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -32,7 +38,24 @@ public class main_ac extends AppCompatActivity {
         Database.updateTemp(myAlarm);
 
 
+        Button delete = (Button)findViewById(R.id.delete_alarm);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alarm addTem = new Alarm();
+                Database.deleteAll();
+                Database.updateTemp(addTem);
+            }
+        });
 
+        //check final database size
+        if(Database.checkForExist() == true){
+            //show the final alarm
+            Alarm finalAlarm = Database.getAlarm();
+            time = (TextView)findViewById(R.id.TV1);
+            time.setText(finalAlarm.getTimeString());
+
+        }
 
         //find the button by id
         Button addAlarm = (Button) findViewById(R.id.addBtn);
