@@ -79,7 +79,7 @@ public class Database extends SQLiteOpenHelper{
         SQLiteDatabase db = getDataBase();
         Cursor alarmCurrsor = db.rawQuery("select * from " + TEMP_TABLE, null);
         ContentValues contentValues = new ContentValues();
-        
+
 
         contentValues.put(COLUMN_1,alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
@@ -87,7 +87,8 @@ public class Database extends SQLiteOpenHelper{
 
         String where = "id=1";
 
-        if(alarmCurrsor == null){
+        if(alarmCurrsor == null || alarmCurrsor.getCount() == 0){
+            contentValues.put(COLUMN_0,"1");
             return db.insert(TEMP_TABLE,null,contentValues);
         }
         else{
@@ -101,16 +102,21 @@ public class Database extends SQLiteOpenHelper{
 
     /*insert settings to final table  */
     public static long insertAlarm(Alarm alarm){
+        SQLiteDatabase db = getDataBase();
+        Cursor alarmCurrsor = db.rawQuery("select * from " + FINAL_TABLE, null);
         ContentValues contentValues = new ContentValues();
-
 
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2, " ");
         contentValues.put(COLUMN_3, " ");
 
-        return getDataBase().insert(FINAL_TABLE, null, contentValues);
-
-
+        if(alarmCurrsor == null || alarmCurrsor.getCount() == 0){
+            contentValues.put(COLUMN_0,"1");
+            return db.insert(FINAL_TABLE,null,contentValues);
+        }
+        else{
+            return db.insert(FINAL_TABLE,null,contentValues);
+        }
     }
 
     /* getter for the actual valid alarm */

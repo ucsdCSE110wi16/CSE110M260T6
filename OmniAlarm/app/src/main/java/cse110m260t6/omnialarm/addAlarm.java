@@ -42,19 +42,20 @@ public class addAlarm extends AppCompatActivity{
                     T3 = (TextView)findViewById(R.id.time_not_valid);
                     String hour = T1.getText().toString();
                     String minute = T2.getText().toString();
-
+                    //get the temp alarm from database
+                    Alarm myAl = Database.getTempAlarm();
 
                     if(!hour.equals("")  && !minute.equals("")){
                         int hour_int = Integer.parseInt(hour);
                         int minute_int = Integer.parseInt(minute);
                         if(hour_int < 24 && hour_int > 0 && minute_int > 0 && minute_int < 60){
+
                             //set up the calendar object of the specified hour and minute
                             Calendar myCa = Calendar.getInstance();
-                            myCa.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
-                            myCa.set(Calendar.MINUTE,Integer.parseInt(minute));
+                            myCa.set(Calendar.HOUR_OF_DAY,hour_int);
+                            myCa.set(Calendar.MINUTE,minute_int);
 
-                            //get the temp alarm from database
-                            Alarm myAl = Database.getTempAlarm();
+
 
                             //update the alarm time
                             myAl.setTime(myCa);

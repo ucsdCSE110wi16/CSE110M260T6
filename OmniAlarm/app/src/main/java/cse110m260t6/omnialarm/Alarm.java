@@ -85,7 +85,9 @@ public class Alarm extends Application {
         String minute = timeParts[1];
 
         //update the calendar
-        alarmCal.set(0,0,0,Integer.parseInt(hour),Integer.parseInt(minute));
+        alarmCal.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
+        alarmCal.set(Calendar.MINUTE,Integer.parseInt(minute));
+
 
         //update the alarm time
         setTime(alarmCal);
