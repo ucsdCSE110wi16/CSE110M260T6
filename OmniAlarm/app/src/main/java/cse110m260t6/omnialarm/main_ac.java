@@ -26,6 +26,9 @@ public class main_ac extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_ac);
+
         // initialize all the textviews
         TextView monday_text = (TextView) findViewById(R.id.monday_time);
         TextView tuesday_text = (TextView) findViewById(R.id.tuesday_time);
@@ -44,8 +47,6 @@ public class main_ac extends AppCompatActivity {
         Button saturday = (Button) findViewById(R.id.saturday);
         Button sunday = (Button) findViewById(R.id.sunday);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_ac);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -130,6 +131,14 @@ public class main_ac extends AppCompatActivity {
             public void onClick(View v) {
                 Intent addActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.addAlarm.class);
                 startActivity(addActivity);
+            }
+        });
+
+        monday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mondayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                startActivity(mondayAc);
             }
         });
 
