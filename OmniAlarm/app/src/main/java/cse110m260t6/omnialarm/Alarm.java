@@ -11,7 +11,7 @@ import java.util.Calendar;
  */
 
 public class Alarm extends Application {
-    //activity[0 ... 6] indicates sunday to saturday
+
     private Boolean[] activity = new Boolean[7];    /* indicates which days to activate */
     private Calendar Time = Calendar.getInstance(); /* Time of the alarm */
     private String RingTone;
@@ -20,25 +20,20 @@ public class Alarm extends Application {
 
     /* default empty constructor */
     public Alarm(){
-        int i;
-        for(i = 0; i < 7; i++) activity[i] = false;
+
     }
 
     /* one argument constructor */
     public Alarm(Calendar inputT){
-        int i;
-        for(i = 0; i < 7; i++) activity[i] = false;
         this.Time = inputT;
     }
 
+
     /* three arguments(string) constructor */
-    public Alarm(String Time,String ringtone, String wu_activity, String date){
-        int i;
-        for(i = 0; i < 7; i++) activity[i] = false;
+    public Alarm(String Time,String ringtone, String wu_activity){
         this.setTimeS(Time);
         this.setRingTone(ringtone);
         this.setWake_up_activity(wu_activity);
-        this.setDateS(date);
     }
 
     /* getter that get alarm activity of each day */
@@ -96,36 +91,6 @@ public class Alarm extends Application {
 
         //update the alarm time
         setTime(alarmCal);
-    }
-
-    public void setDateS(String date) {
-        int i;
-        for(i = 0; i < 7; i++) {
-            if(date.charAt(i) == '0')
-                activity[i] = false;
-            else
-                activity[i] = true;
-        }
-    }
-
-    public String getDateString() {
-        String returnDate = "";
-        int i;
-        for(i = 0; i < 7; i++) {
-            if(activity[i])
-                returnDate.concat("1");
-            else
-                returnDate.concat("0");
-        }
-        return returnDate;
-    }
-
-    public Boolean[] getDate() {
-        return activity;
-    }
-
-    public void setDate(int date, boolean ac) {
-        activity[date] = ac;
     }
 
     /*get alarm id*/
