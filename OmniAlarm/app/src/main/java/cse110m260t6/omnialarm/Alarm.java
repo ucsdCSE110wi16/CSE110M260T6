@@ -33,13 +33,22 @@ public class Alarm extends Application {
     }
 
     /* three arguments(string) constructor */
-    public Alarm(String Time,String ringtone, String wu_activity, String date){
+    public Alarm(String ID, String Time,String ringtone, String wu_activity, String date){
         int i;
         for(i = 0; i < 7; i++) activity[i] = false;
+        this.setIDS(ID);
         this.setTimeS(Time);
         this.setRingTone(ringtone);
         this.setWake_up_activity(wu_activity);
         this.setDateS(date);
+    }
+
+    public void setIDS(String ID) {
+        AlarmID = Integer.parseInt(ID);
+    }
+
+    public String getIDString() {
+        return ""+AlarmID;
     }
 
     /* getter that get alarm activity of each day */

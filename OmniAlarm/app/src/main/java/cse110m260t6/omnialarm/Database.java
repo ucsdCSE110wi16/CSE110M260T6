@@ -83,10 +83,10 @@ public class Database extends SQLiteOpenHelper{
     /* update method for temp alarm */
     public static long updateTemp(Alarm alarm){
         SQLiteDatabase db = getDataBase();
-        Cursor alarmCurrsor = db.rawQuery("select * from " + TEMP_TABLE, null);
+        Cursor alarmCursor = db.rawQuery("select * from " + TEMP_TABLE, null);
         ContentValues contentValues = new ContentValues();
 
-        Log.e("Datebase", "updateTemp");
+        Log.e("Database", "updateTemp");
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
         contentValues.put(COLUMN_3, " ");
@@ -94,7 +94,7 @@ public class Database extends SQLiteOpenHelper{
 
         String where = "id=1";
 
-        if(alarmCurrsor == null || alarmCurrsor.getCount() == 0){
+        if(alarmCursor == null || alarmCursor.getCount() == 0){
             contentValues.put(COLUMN_0,"1");
             return db.insert(TEMP_TABLE,null,contentValues);
         }
@@ -109,7 +109,7 @@ public class Database extends SQLiteOpenHelper{
     /*insert settings to final table  */
     public static long insertAlarm(Alarm alarm){
         SQLiteDatabase db = getDataBase();
-        Cursor alarmCurrsor = db.rawQuery("select * from " + FINAL_TABLE, null);
+        Cursor alarmCursor = db.rawQuery("select * from " + FINAL_TABLE, null);
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_1, alarm.getTimeString());
@@ -118,12 +118,12 @@ public class Database extends SQLiteOpenHelper{
         contentValues.put(COLUMN_4, alarm.getDateString());
 
 
-        if(alarmCurrsor == null || alarmCurrsor.getCount() == 0){
+        if(alarmCursor == null || alarmCursor.getCount() == 0){
             contentValues.put(COLUMN_0,"1");
             return db.insert(FINAL_TABLE,null,contentValues);
         }
         else{
-            return db.insert(FINAL_TABLE,null,contentValues);
+            return db.insert(FINAL_TABLE, null, contentValues);
         }
     }
 
@@ -133,11 +133,12 @@ public class Database extends SQLiteOpenHelper{
         Cursor alarmCursor = db.rawQuery("select * from " + FINAL_TABLE, null);
         Alarm returnAlarm = null;
         if(alarmCursor.moveToFirst()) {
+            String ID = alarmCursor.getString(0);
             String Time = alarmCursor.getString(1);
             String ringtone = alarmCursor.getString(2);
             String wake_up_activity = alarmCursor.getString(3);
             String Date = alarmCursor.getString(4);
-            returnAlarm = new Alarm(Time, ringtone, wake_up_activity, Date);
+            returnAlarm = new Alarm(ID, Time, ringtone, wake_up_activity, Date);
         }
         return returnAlarm;
     }
@@ -148,11 +149,12 @@ public class Database extends SQLiteOpenHelper{
         Alarm returnAlarm = null;
         Cursor alarmCursor = db.rawQuery("select * from " + TEMP_TABLE, null);
         if(alarmCursor.moveToFirst()) {
+            String ID = alarmCursor.getString(0);
             String Time = alarmCursor.getString(1);
             String ringtone = alarmCursor.getString(2);
             String wake_up_activity = alarmCursor.getString(3);
             String Date = alarmCursor.getString(4);
-            returnAlarm = new Alarm(Time, ringtone, wake_up_activity, Date);
+            returnAlarm = new Alarm(ID, Time, ringtone, wake_up_activity, Date);
         }
         return returnAlarm;
     }
@@ -191,6 +193,7 @@ public class Database extends SQLiteOpenHelper{
         if(alarmCursor.moveToFirst()){
             for(int i = 0; i < alarmCursor.getCount(); i++){
                 //get all the arguments for alarm
+                String ID = alarmCursor.getString(0);
                 String Time = alarmCursor.getString(1);
                 String ringtone = alarmCursor.getString(2);
                 String wake_up_activity = alarmCursor.getString(3);
@@ -200,6 +203,7 @@ public class Database extends SQLiteOpenHelper{
                 Alarm temp = new Alarm();
 
                 //update alarm field
+                temp.setIDS(ID);
                 temp.setWake_up_activity(wake_up_activity);
                 temp.setTimeS(Time);
                 temp.setRingTone(ringtone);
@@ -216,4 +220,47 @@ public class Database extends SQLiteOpenHelper{
 
     }
 
+    public static Alarm getByID(String id) {
+        String[] columns = new String[] {
+                COLUMN_0,
+                COLUMN_1,
+                COLUMN_2,
+                COLUMN_3,
+                COLUMN_4
+        };
+        Alarm returnAlarm = null;
+        SQLiteDatabase db = getDataBase();
+        Cursor alarmCursor = db.query(FINAL_TABLE, columns, COLUMN_0 + "=" + id, null, null, null, null);
+
+        if(alarmCursor.moveToFirst()) {
+            String ID = alarmCursor.getString(0);
+            String Time = alarmCursor.getString(1);
+            String ringtone = alarmCursor.getString(2);
+            String wake_up_activity = alarmCursor.getString(3);
+            String Date = alarmCursor.getString(4);
+            returnAlarm = new Alarm(ID, Time, ringtone, wake_up_activity, Date);
+        }
+        return returnAlarm;
+    }
+
+    public static long updateById(String id, Alarm newAlarm) {
+        String[] columns = new String[] {
+                COLUMN_0,
+                COLUMN_1,
+                COLUMN_2,
+                COLUMN_3,
+                COLUMN_4
+        };
+        SQLiteDatabase db = getDataBase();
+        //Cursor alarmCursor = db.query(FINAL_TABLE, columns, COLUMN_0+"="+id, null, null, null, null);
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_1, newAlarm.getTimeString());
+        contentValues.put(COLUMN_2," ");
+        contentValues.put(COLUMN_3, " ");
+        contentValues.put(COLUMN_4, newAlarm.getDateString());
+
+        return db.update(FINAL_TABLE,contentValues,COLUMN_0+"="+id,null);
+
+    }
 }
