@@ -3,8 +3,13 @@ package cse110m260t6.omnialarm;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.accessibility.AccessibilityManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,6 +26,9 @@ public class chooseDay extends AppCompatActivity {
 
         //populate the list view with alarm
         populateListView();
+
+        //register click call back
+        registerClickCallBack();
     }
 
     /* private method to populate the list view */
@@ -42,6 +50,26 @@ public class chooseDay extends AppCompatActivity {
         myListView.setAdapter(myAdapter);
 
 
+    }
+
+
+    /*private method to register click call back */
+    private void registerClickCallBack(){
+        //get the list view
+        ListView myListView = (ListView)findViewById(R.id.listView);
+
+        //set on item click listener
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClick, int position, long id) {
+                //get the textView
+                TextView alarm = (TextView) viewClick;
+                String message = "You click position" + position + alarm.getText().toString();
+                //show which alarm is selected
+                Toast.makeText(chooseDay.this,message, Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
 }
