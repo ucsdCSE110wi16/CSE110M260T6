@@ -9,6 +9,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by dadongjing on 2/8/16.
@@ -83,7 +86,7 @@ public class Database extends SQLiteOpenHelper{
 
         contentValues.put(COLUMN_1,alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
-        contentValues.put(COLUMN_3," ");
+        contentValues.put(COLUMN_3, " ");
 
         String where = "id=1";
 
@@ -152,6 +155,7 @@ public class Database extends SQLiteOpenHelper{
         return db.delete(FINAL_TABLE, "ID = ?", new String[]{id});
     }
 
+    /*check for if table is empty */
     public static boolean checkForExist(){
         SQLiteDatabase db = getDataBase();
         Cursor myCur = db.rawQuery("SELECT * FROM " + FINAL_TABLE, null);
@@ -165,9 +169,42 @@ public class Database extends SQLiteOpenHelper{
         return exist;
     }
 
+    /* delete all the alarm in all table */
     public static void deleteAll(){
         getDataBase().delete(FINAL_TABLE,null,null);
         getDataBase().delete(TEMP_TABLE,null,null);
+    }
+
+    /*get all the alarm in the final table */
+    public static List<Alarm> getAll(){
+        List<Alarm> AlarmList = new ArrayList<Alarm>();
+
+        SQLiteDatabase db = getDataBase();
+        Cursor alarmCursor = db.rawQuery("select * from " + FINAL_TABLE, null);
+        if(alarmCursor.moveToFirst()){
+            for(int i = 0; i < alarmCursor.getCount(); i++){
+                //get all the arguments for alarm
+                String Time = alarmCursor.getString(1);
+                String ringtone = alarmCursor.getString(2);
+                String wake_up_activity = alarmCursor.getString(3);
+
+                //create a temp alarm
+                Alarm temp = new Alarm();
+
+                //update alarm field
+                temp.setWake_up_activity(wake_up_activity);
+                temp.setTimeS(Time);
+                temp.setRingTone(ringtone);
+
+                //add to the list
+                AlarmList.add(temp);
+
+                //move cursor to the next position
+                alarmCursor.moveToNext();
+            }
+        }
+        return AlarmList;
+
     }
 
 }

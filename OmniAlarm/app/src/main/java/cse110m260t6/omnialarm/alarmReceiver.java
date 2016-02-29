@@ -11,9 +11,13 @@ import android.util.Log;
 public class alarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("FCK","U");
-        //Intent jumpToMath = new Intent(context, cse110m260t6.omnialarm.mathUI.class);
-        //context.startActivity(jumpToMath);
+        Log.e("In receiver","yay");
+        //start new activity
+        Intent jumpToMath = new Intent(context, cse110m260t6.omnialarm.mathUI.class);
+        //update its flag
+        jumpToMath.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //jump to solve_math_for wake up activity
+        context.startActivity(jumpToMath);
 
     }
 }
