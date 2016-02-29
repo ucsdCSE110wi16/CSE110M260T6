@@ -2,6 +2,7 @@ package cse110m260t6.omnialarm;
 
 import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -11,7 +12,7 @@ import java.util.Calendar;
  */
 
 public class Alarm extends Application {
-
+    //activity[0 ... 6] indicates sunday to saturday
     private Boolean[] activity = new Boolean[7];    /* indicates which days to activate */
     private Calendar Time = Calendar.getInstance(); /* Time of the alarm */
     private String RingTone;
@@ -20,20 +21,34 @@ public class Alarm extends Application {
 
     /* default empty constructor */
     public Alarm(){
-
+        int i;
+        for(i = 0; i < 7; i++) activity[i] = false;
     }
 
     /* one argument constructor */
     public Alarm(Calendar inputT){
+        int i;
+        for(i = 0; i < 7; i++) activity[i] = false;
         this.Time = inputT;
     }
 
-
     /* three arguments(string) constructor */
-    public Alarm(String Time,String ringtone, String wu_activity){
+    public Alarm(String ID, String Time,String ringtone, String wu_activity, String date){
+        int i;
+        for(i = 0; i < 7; i++) activity[i] = false;
+        this.setIDS(ID);
         this.setTimeS(Time);
         this.setRingTone(ringtone);
         this.setWake_up_activity(wu_activity);
+        this.setDateS(date);
+    }
+
+    public void setIDS(String ID) {
+        AlarmID = Integer.parseInt(ID);
+    }
+
+    public String getIDString() {
+        return ""+AlarmID;
     }
 
     /* getter that get alarm activity of each day */
@@ -91,6 +106,40 @@ public class Alarm extends Application {
 
         //update the alarm time
         setTime(alarmCal);
+    }
+
+    public void setDateS(String date) {
+        int i;
+        //if(!date.equals(""))
+            for(i = 0; i < 7; i++) {
+                if(date.charAt(i) == '0')
+                    activity[i] = false;
+                else
+                    activity[i] = true;
+            }
+        //else for(i = 0; i < 7; i++) activity[i] = false;
+    }
+
+    public String getDateString() {
+        String returnDate = "";
+        int i;
+        for(i = 0; i < 7; i++) {
+            Log.e("activity", activity[i].toString());
+            if(activity[i])
+                returnDate += "1";
+            else
+                returnDate += "0";
+        }
+        Log.e("return", returnDate);
+        return returnDate;
+    }
+
+    public Boolean[] getDate() {
+        return activity;
+    }
+
+    public void setDate(int date, boolean ac) {
+        activity[date] = ac;
     }
 
     /*get alarm id*/
