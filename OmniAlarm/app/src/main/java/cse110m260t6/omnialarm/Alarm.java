@@ -48,6 +48,17 @@ public class Alarm extends Application {
         }
     }
 
+    /*add one day's activity */
+    public void setOneDayAc(String[] arr){
+        Boolean[] days = this.getActivity();
+
+        for(int i = 0; i < 7; i++){
+            if(!arr[i].equals("0")){
+                days[i] = true;
+            }
+        }
+    }
+
     /* return the time setting of this alarm */
     public Calendar getTime(){
         return this.Time;

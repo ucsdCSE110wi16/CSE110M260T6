@@ -22,6 +22,7 @@
         <activity android:name=".ringTone"></activity>
         <activity android:name=".wakeupAc"></activity>
         <activity android:name=".mathUI"></activity>
+        <activity android:name=".chooseDay"></activity>
         <receiver android:name=".alarmReceiver"/>
 
     </application>

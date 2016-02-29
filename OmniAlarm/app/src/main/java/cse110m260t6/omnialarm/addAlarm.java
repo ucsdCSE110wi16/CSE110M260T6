@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class addAlarm extends AppCompatActivity{
         EditText T1;
         EditText T2;
         TextView T3;
+
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -40,6 +43,10 @@ public class addAlarm extends AppCompatActivity{
                     T1 = (EditText)findViewById(R.id.hour);
                     T2 = (EditText)findViewById(R.id.minute);
                     T3 = (TextView)findViewById(R.id.time_not_valid);
+
+
+
+                    //convert text to string
                     String hour = T1.getText().toString();
                     String minute = T2.getText().toString();
                     //get the temp alarm from database

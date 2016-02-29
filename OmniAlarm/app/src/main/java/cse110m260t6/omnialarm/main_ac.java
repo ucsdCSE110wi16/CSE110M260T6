@@ -75,6 +75,14 @@ public class main_ac extends AppCompatActivity {
 
         }
 
+        Button choose_day = (Button)findViewById(R.id.select_date);
+        choose_day.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.chooseDay.class);
+                startActivity(addActivity);
+            }
+        });
         //find the button by id
         Button addAlarm = (Button) findViewById(R.id.addBtn);
 
