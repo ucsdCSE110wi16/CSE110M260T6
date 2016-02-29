@@ -86,6 +86,7 @@ public class main_ac extends AppCompatActivity {
                     alarmEachDate[j] = tempAlarm;
                 }
             }
+            i++;
         }
 
         //setText for each textview

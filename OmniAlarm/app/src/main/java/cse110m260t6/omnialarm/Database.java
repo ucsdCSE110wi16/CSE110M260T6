@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,6 @@ public class Database extends SQLiteOpenHelper{
     public static final String COLUMN_2 = "RINGTONE";
     public static final String COLUMN_3 = "ACTIVITY";
     public static final String COLUMN_4 = "DATE";
-
 
 
     public static final int DATABASE_VERSION = 1;
@@ -86,7 +86,7 @@ public class Database extends SQLiteOpenHelper{
         Cursor alarmCurrsor = db.rawQuery("select * from " + TEMP_TABLE, null);
         ContentValues contentValues = new ContentValues();
 
-
+        Log.e("Datebase", "updateTemp");
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
         contentValues.put(COLUMN_3, " ");

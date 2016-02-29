@@ -2,6 +2,7 @@ package cse110m260t6.omnialarm;
 
 import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -100,23 +101,27 @@ public class Alarm extends Application {
 
     public void setDateS(String date) {
         int i;
-        for(i = 0; i < 7; i++) {
-            if(date.charAt(i) == '0')
-                activity[i] = false;
-            else
-                activity[i] = true;
-        }
+        //if(!date.equals(""))
+            for(i = 0; i < 7; i++) {
+                if(date.charAt(i) == '0')
+                    activity[i] = false;
+                else
+                    activity[i] = true;
+            }
+        //else for(i = 0; i < 7; i++) activity[i] = false;
     }
 
     public String getDateString() {
         String returnDate = "";
         int i;
         for(i = 0; i < 7; i++) {
+            Log.e("activity", activity[i].toString());
             if(activity[i])
-                returnDate.concat("1");
+                returnDate += "1";
             else
-                returnDate.concat("0");
+                returnDate += "0";
         }
+        Log.e("return", returnDate);
         return returnDate;
     }
 
