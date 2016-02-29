@@ -21,6 +21,8 @@
         <activity android:name=".addAlarm"></activity>
         <activity android:name=".ringTone"></activity>
         <activity android:name=".wakeupAc"></activity>
+        <activity android:name=".mathUI"></activity>
+        <receiver android:name=".alarmReceiver"/>
 
     </application>
 

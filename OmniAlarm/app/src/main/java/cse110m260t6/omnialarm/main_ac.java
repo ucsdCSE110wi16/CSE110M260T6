@@ -1,5 +1,8 @@
 package cse110m260t6.omnialarm;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +19,12 @@ import java.nio.channels.AlreadyConnectedException;
 
 public class main_ac extends AppCompatActivity {
 
-
+    AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
     TextView time;
+    private Context context;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -28,6 +35,8 @@ public class main_ac extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.context = this;
+
         //create a default alarm for future edit
         Alarm myAlarm = new Alarm();
 
@@ -37,6 +46,11 @@ public class main_ac extends AppCompatActivity {
         //store this default alarm in the database
         Database.updateTemp(myAlarm);
 
+        //set alarmManager
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        //set intent
+        final Intent alarmReceiver = new Intent(this, cse110m260t6.omnialarm.alarmReceiver.class);
 
         Button delete = (Button)findViewById(R.id.delete_alarm);
         delete.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +68,10 @@ public class main_ac extends AppCompatActivity {
             Alarm finalAlarm = Database.getAlarm();
             time = (TextView)findViewById(R.id.TV1);
             time.setText(finalAlarm.getTimeString());
+
+            pendingIntent = PendingIntent.getBroadcast(main_ac.this, 0, alarmReceiver, PendingIntent.FLAG_ONE_SHOT);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, finalAlarm.getTime().getTimeInMillis(), pendingIntent);
+
 
         }
 
@@ -94,4 +112,5 @@ public class main_ac extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
