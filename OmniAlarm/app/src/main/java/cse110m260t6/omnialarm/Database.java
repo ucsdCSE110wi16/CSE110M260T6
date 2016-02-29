@@ -27,6 +27,7 @@ public class Database extends SQLiteOpenHelper{
     public static final String COLUMN_1 = "TIME";
     public static final String COLUMN_2 = "RINGTONE";
     public static final String COLUMN_3 = "ACTIVITY";
+    public static final String COLUMN_4 = "DATE";
 
 
 
@@ -53,13 +54,15 @@ public class Database extends SQLiteOpenHelper{
                 + COLUMN_0 + " INTEGER primary key autoincrement, "
                 + COLUMN_1 + " TEXT, "
                 + COLUMN_2 + " TEXT, "
-                + COLUMN_3 + " TEXT)");
+                + COLUMN_3 + " TEXT, "
+                + COLUMN_4 + " TEXT)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TEMP_TABLE + "("
                 + COLUMN_0 + " INTEGER primary key autoincrement, "
                 + COLUMN_1 + " TEXT, "
                 + COLUMN_2 + " TEXT, "
-                + COLUMN_3 + " TEXT)");
+                + COLUMN_3 + " TEXT, "
+                + COLUMN_4 + " TEXT)");
     }
 
     @Override
@@ -84,9 +87,10 @@ public class Database extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
 
 
-        contentValues.put(COLUMN_1,alarm.getTimeString());
+        contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
         contentValues.put(COLUMN_3, " ");
+        contentValues.put(COLUMN_4, alarm.getDateString());
 
         String where = "id=1";
 
@@ -102,7 +106,6 @@ public class Database extends SQLiteOpenHelper{
 
 
 
-
     /*insert settings to final table  */
     public static long insertAlarm(Alarm alarm){
         SQLiteDatabase db = getDataBase();
@@ -112,6 +115,8 @@ public class Database extends SQLiteOpenHelper{
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2, " ");
         contentValues.put(COLUMN_3, " ");
+        contentValues.put(COLUMN_4, alarm.getDateString());
+
 
         if(alarmCurrsor == null || alarmCurrsor.getCount() == 0){
             contentValues.put(COLUMN_0,"1");
@@ -131,7 +136,8 @@ public class Database extends SQLiteOpenHelper{
             String Time = alarmCursor.getString(1);
             String ringtone = alarmCursor.getString(2);
             String wake_up_activity = alarmCursor.getString(3);
-            returnAlarm = new Alarm(Time, ringtone, wake_up_activity);
+            String Date = alarmCursor.getString(4);
+            returnAlarm = new Alarm(Time, ringtone, wake_up_activity, Date);
         }
         return returnAlarm;
     }
@@ -145,7 +151,8 @@ public class Database extends SQLiteOpenHelper{
             String Time = alarmCursor.getString(1);
             String ringtone = alarmCursor.getString(2);
             String wake_up_activity = alarmCursor.getString(3);
-            returnAlarm = new Alarm(Time, ringtone, wake_up_activity);
+            String Date = alarmCursor.getString(4);
+            returnAlarm = new Alarm(Time, ringtone, wake_up_activity, Date);
         }
         return returnAlarm;
     }
@@ -187,6 +194,7 @@ public class Database extends SQLiteOpenHelper{
                 String Time = alarmCursor.getString(1);
                 String ringtone = alarmCursor.getString(2);
                 String wake_up_activity = alarmCursor.getString(3);
+                String Date = alarmCursor.getString(4);
 
                 //create a temp alarm
                 Alarm temp = new Alarm();
@@ -195,6 +203,7 @@ public class Database extends SQLiteOpenHelper{
                 temp.setWake_up_activity(wake_up_activity);
                 temp.setTimeS(Time);
                 temp.setRingTone(ringtone);
+                temp.setDateS(Date);
 
                 //add to the list
                 AlarmList.add(temp);
