@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -63,8 +64,11 @@ public class chooseDay extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClick, int position, long id) {
                 //get the textView
-                TextView alarm = (TextView) viewClick;
-                String message = "You click position" + position + alarm.getText().toString();
+                LinearLayout alarm = (LinearLayout) viewClick;
+
+                //TextView alarmSpecific = (TextView) alarm.getChildAt(position);
+
+                String message = "You click alarm" + position;
                 //show which alarm is selected
                 Toast.makeText(chooseDay.this,message, Toast.LENGTH_LONG).show();
 
