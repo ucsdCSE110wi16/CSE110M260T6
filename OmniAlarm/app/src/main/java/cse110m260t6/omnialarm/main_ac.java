@@ -39,13 +39,13 @@ public class main_ac extends AppCompatActivity {
         TextView sunday_text = (TextView) findViewById(R.id.sunday_time);
 
         // initialize all the buttons
-        Button monday = (Button) findViewById(R.id.monday);
-        Button tuesday = (Button) findViewById(R.id.tuesday);
+        final Button monday = (Button) findViewById(R.id.monday);
+        final Button tuesday = (Button) findViewById(R.id.tuesday);
         Button wednesday = (Button) findViewById(R.id.wednesday);
         Button thursday = (Button) findViewById(R.id.thursday);
-        Button friday = (Button) findViewById(R.id.friday);
-        Button saturday = (Button) findViewById(R.id.saturday);
-        Button sunday = (Button) findViewById(R.id.sunday);
+        final Button friday = (Button) findViewById(R.id.friday);
+        final Button saturday = (Button) findViewById(R.id.saturday);
+        final Button sunday = (Button) findViewById(R.id.sunday);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -134,15 +134,69 @@ public class main_ac extends AppCompatActivity {
             }
         });
 
+        //set the activity for each button
+        sunday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sundayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                sundayAc.putExtra("Date", 0);
+                startActivity(sundayAc);
+            }
+        });
+
         monday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mondayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                mondayAc.putExtra("Date", 1);
                 startActivity(mondayAc);
             }
         });
 
+        tuesday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tuesdayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                tuesdayAc.putExtra("Date", 2);
+                startActivity(tuesdayAc);
+            }
+        });
 
+        wednesday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wednesdayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                wednesdayAc.putExtra("Date", 3);
+                startActivity(wednesdayAc);
+            }
+        });
+
+        thursday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent thursdayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                thursdayAc.putExtra("Date", 4);
+                startActivity(thursdayAc);
+            }
+        });
+
+        friday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fridayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                fridayAc.putExtra("Date", 5);
+                startActivity(fridayAc);
+            }
+        });
+
+        saturday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent saturdayAc = new Intent(v.getContext(), cse110m260t6.omnialarm.selectAlarm.class);
+                saturdayAc.putExtra("Date", 6);
+                startActivity(saturdayAc);
+            }
+        });
     }
 
 

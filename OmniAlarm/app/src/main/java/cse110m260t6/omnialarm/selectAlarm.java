@@ -1,8 +1,15 @@
 package cse110m260t6.omnialarm;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,7 +28,10 @@ public class selectAlarm extends AppCompatActivity {
 
         alarmList = Database.getAll();
         Alarm tempAlarm;
+        Intent intent = getIntent();
+        int date = intent.getIntExtra("Date", -1);
 
+        /*
         if(alarmList != null) {
             if(alarmList.get(0) != null) {
                 tempAlarm = alarmList.get(0);
@@ -38,6 +48,58 @@ public class selectAlarm extends AppCompatActivity {
 
         Intent goback = new Intent(this, cse110m260t6.omnialarm.main_ac.class);
         startActivity(goback);
+        */
+
+        //populate the list view with alarm
+        populateListView();
+
+        //register click call back
+        registerClickCallBack();
 
     }
+
+    /* private method to populate the list view */
+    private void populateListView(){
+        //get the cursor
+        Cursor cursor = Database.get();
+
+        //create its filed
+        String[] alarmTime = new String[]{Database.COLUMN_1,Database.COLUMN_2,Database.COLUMN_3};
+        int[] timeToView = new int[]{R.id.time,R.id.ringtone,R.id.activity};
+
+        //create the simple cursor adapter
+        SimpleCursorAdapter myAdapter = new SimpleCursorAdapter(getBaseContext(),R.layout.time,
+                cursor,alarmTime,timeToView,0);
+        //create list view
+        ListView myListView = (ListView)findViewById(R.id.listView);
+
+        //set adapter
+        myListView.setAdapter(myAdapter);
+
+
+    }
+
+
+    /*private method to register click call back */
+    private void registerClickCallBack(){
+        //get the list view
+        ListView myListView = (ListView)findViewById(R.id.listView);
+
+        //set on item click listener
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClick, int position, long id) {
+                //get the textView
+                LinearLayout alarm = (LinearLayout) viewClick;
+
+                //TextView alarmSpecific = (TextView) alarm.getChildAt(position);
+
+                String message = "You click alarm" + position;
+                //show which alarm is selected
+                Toast.makeText(selectAlarm.this, message, Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
 }

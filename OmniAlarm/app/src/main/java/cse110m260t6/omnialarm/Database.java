@@ -24,7 +24,7 @@ public class Database extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "AlarmData.db";
     public static final String TEMP_TABLE = "Temp_Table";
     public static final String FINAL_TABLE = "Final_Table";
-    public static final String COLUMN_0 = "ID";
+    public static final String COLUMN_0 = "_id";
     public static final String COLUMN_1 = "TIME";
     public static final String COLUMN_2 = "RINGTONE";
     public static final String COLUMN_3 = "ACTIVITY";
@@ -92,7 +92,7 @@ public class Database extends SQLiteOpenHelper{
         contentValues.put(COLUMN_3, " ");
         contentValues.put(COLUMN_4, alarm.getDateString());
 
-        String where = "id=1";
+        String where = "_id=1";
 
         if(alarmCursor == null || alarmCursor.getCount() == 0){
             contentValues.put(COLUMN_0,"1");
@@ -262,5 +262,21 @@ public class Database extends SQLiteOpenHelper{
 
         return db.update(FINAL_TABLE,contentValues,COLUMN_0+"="+id,null);
 
+    }
+
+    public static Cursor get(){
+        String[] column = new String[]{
+                COLUMN_0,
+                COLUMN_1,
+                COLUMN_2,
+                COLUMN_3,
+                COLUMN_4
+        };
+        String where = null;
+        Cursor c = getDataBase().query(true,FINAL_TABLE,column,where,null,null,null,null,null);
+        if(c != null){
+            c.moveToFirst();
+        }
+        return c;
     }
 }
