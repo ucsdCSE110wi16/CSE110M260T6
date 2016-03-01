@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,8 @@ import java.util.List;
 public class selectAlarm extends AppCompatActivity {
 
     List<Alarm> alarmList;
+    private Alarm[] alarmEachDate = new Alarm[7];
+    int date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,23 @@ public class selectAlarm extends AppCompatActivity {
         alarmList = Database.getAll();
         Alarm tempAlarm;
         Intent intent = getIntent();
-        int date = intent.getIntExtra("Date", -1);
+        date = intent.getIntExtra("Date", -1);
+
+        Boolean[] tempAc;
+
+        int i;
+        int j;
+        i = 0;
+        while(i < alarmList.size()) {
+            tempAlarm = alarmList.get(i);
+            tempAc = tempAlarm.getDate();
+            for(j = 0; j < 7; j++) {
+                if(tempAc[j]) {
+                    alarmEachDate[j] = tempAlarm;
+                }
+            }
+            i++;
+        }
 
         /*
         if(alarmList != null) {
@@ -92,11 +111,21 @@ public class selectAlarm extends AppCompatActivity {
                 //get the textView
                 LinearLayout alarm = (LinearLayout) viewClick;
 
+                if(alarmEachDate[date] != null) {
+                    alarmEachDate[date].setDate(date, false);
+                    Database.updateById(alarmEachDate[date].getIDString(), alarmEachDate[date]);
+                }
+                alarmList.get(position).setDate(date, true);
+                Database.updateById(alarmList.get(position).getIDString(), alarmList.get(position));
+
                 //TextView alarmSpecific = (TextView) alarm.getChildAt(position);
 
                 String message = "You click alarm" + position;
                 //show which alarm is selected
                 Toast.makeText(selectAlarm.this, message, Toast.LENGTH_LONG).show();
+
+                Intent goback = new Intent(selectAlarm.this, cse110m260t6.omnialarm.main_ac.class);
+                startActivity(goback);
 
             }
         });
