@@ -89,7 +89,7 @@ public class Database extends SQLiteOpenHelper{
         Log.e("Database", "updateTemp");
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2," ");
-        contentValues.put(COLUMN_3, " ");
+        contentValues.put(COLUMN_3, alarm.getWake_up_activity());
         contentValues.put(COLUMN_4, alarm.getDateString());
 
         String where = "_id=1";
@@ -114,7 +114,7 @@ public class Database extends SQLiteOpenHelper{
 
         contentValues.put(COLUMN_1, alarm.getTimeString());
         contentValues.put(COLUMN_2, " ");
-        contentValues.put(COLUMN_3, " ");
+        contentValues.put(COLUMN_3, alarm.getWake_up_activity());
         contentValues.put(COLUMN_4, alarm.getDateString());
 
 
@@ -257,7 +257,7 @@ public class Database extends SQLiteOpenHelper{
 
         contentValues.put(COLUMN_1, newAlarm.getTimeString());
         contentValues.put(COLUMN_2," ");
-        contentValues.put(COLUMN_3, " ");
+        contentValues.put(COLUMN_3, newAlarm.getWake_up_activity());
         contentValues.put(COLUMN_4, newAlarm.getDateString());
 
         return db.update(FINAL_TABLE,contentValues,COLUMN_0+"="+id,null);

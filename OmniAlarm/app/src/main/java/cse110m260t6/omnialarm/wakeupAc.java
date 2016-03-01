@@ -11,28 +11,51 @@ import android.widget.Button;
  */
 public class wakeupAc extends AppCompatActivity{
     Button Choose_wakeup;
+    Button Math_problem;
+    Button Reverse_String;
+    String activity;
+    Alarm myAl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wakeup_ac);
 
+        //get the temp alarm from database
+        myAl = Database.getTempAlarm();
+
+        //logic for math problem button
+        Math_problem = (Button)findViewById(R.id.math);
+
+        Math_problem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity = "Solve Math Problem";
+                myAl.setWake_up_activity(activity);
+            }
+        });
+
+        //logic for reverse string button
+        Reverse_String = (Button)findViewById(R.id.reverse);
+
+        Reverse_String.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity = "Reverse the String";
+                myAl.setWake_up_activity(activity);
+            }
+        });
+
+        //choose_wakeup button logic to put temp alarm into final table in the database
+        //and jump back to main page
         Choose_wakeup = (Button)findViewById(R.id.choose_wake_up);
 
         Choose_wakeup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //get the temp alarm from database
-                Alarm myAl = Database.getTempAlarm();
-
-                //update the wake up activity
-
-                
-
 
                 //store the alarm back to the final table
                 Database.insertAlarm(myAl);
-
 
                 //jump back to main page
                 Intent jumAc = new Intent(v.getContext(),cse110m260t6.omnialarm.main_ac.class);

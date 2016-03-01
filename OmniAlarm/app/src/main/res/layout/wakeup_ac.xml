@@ -12,14 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Solve_math_problem"
-        android:id="@+id/button"
+        android:id="@+id/math"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:text="Reverse String"
+        android:id="@+id/reverse"
         android:layout_gravity="center_horizontal" />
 
     <Button
