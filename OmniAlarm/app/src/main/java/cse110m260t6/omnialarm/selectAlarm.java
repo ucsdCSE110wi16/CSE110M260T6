@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -22,6 +23,7 @@ public class selectAlarm extends AppCompatActivity {
     List<Alarm> alarmList;
     private Alarm[] alarmEachDate = new Alarm[7];
     int date;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,15 @@ public class selectAlarm extends AppCompatActivity {
         //register click call back
         registerClickCallBack();
 
+        back = (Button)findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goback = new Intent(selectAlarm.this, cse110m260t6.omnialarm.main_ac.class);
+                startActivity(goback);
+            }
+        });
+
     }
 
     /* private method to populate the list view */
@@ -118,15 +129,10 @@ public class selectAlarm extends AppCompatActivity {
                 alarmList.get(position).setDate(date, true);
                 Database.updateById(alarmList.get(position).getIDString(), alarmList.get(position));
 
-                //TextView alarmSpecific = (TextView) alarm.getChildAt(position);
-
                 String message = "You click alarm" + position;
                 //show which alarm is selected
                 Toast.makeText(selectAlarm.this, message, Toast.LENGTH_LONG).show();
-
-                Intent goback = new Intent(selectAlarm.this, cse110m260t6.omnialarm.main_ac.class);
-                startActivity(goback);
-
+                
             }
         });
     }

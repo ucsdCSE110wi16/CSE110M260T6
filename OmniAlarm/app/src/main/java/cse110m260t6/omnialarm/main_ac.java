@@ -18,8 +18,6 @@ public class main_ac extends AppCompatActivity {
 
     AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    TextView time;
-    private Context context;
     private List<Alarm> alarmList;
     private Alarm[] alarmEachDate = new Alarm[7];
 
@@ -50,8 +48,6 @@ public class main_ac extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        this.context = this;
 
         //create a default alarm for future edit
         Alarm myAlarm = new Alarm();
@@ -99,13 +95,21 @@ public class main_ac extends AppCompatActivity {
         if(alarmEachDate[5] != null) friday_text.setText(alarmEachDate[5].getTimeString());
         if(alarmEachDate[6] != null) saturday_text.setText(alarmEachDate[6].getTimeString());
 
+        //once delete button is clicked, drop the table and jump back to main page
         Button delete = (Button)findViewById(R.id.delete_alarm);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                Database.dropTable();
+                Database.init(main_ac.this);
+                Intent backToMain = new Intent(v.getContext(), cse110m260t6.omnialarm.main_ac.class);
+                startActivity(backToMain);
+                */
                 Alarm addTem = new Alarm();
                 Database.deleteAll();
                 Database.updateTemp(addTem);
+
             }
         });
 

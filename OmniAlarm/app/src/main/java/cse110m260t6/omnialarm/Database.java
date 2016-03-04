@@ -88,7 +88,7 @@ public class Database extends SQLiteOpenHelper{
 
         Log.e("Database", "updateTemp");
         contentValues.put(COLUMN_1, alarm.getTimeString());
-        contentValues.put(COLUMN_2," ");
+        contentValues.put(COLUMN_2, alarm.getRingTone());
         contentValues.put(COLUMN_3, alarm.getWake_up_activity());
         contentValues.put(COLUMN_4, alarm.getDateString());
 
@@ -113,7 +113,7 @@ public class Database extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_1, alarm.getTimeString());
-        contentValues.put(COLUMN_2, " ");
+        contentValues.put(COLUMN_2, alarm.getRingTone());
         contentValues.put(COLUMN_3, alarm.getWake_up_activity());
         contentValues.put(COLUMN_4, alarm.getDateString());
 
@@ -252,11 +252,10 @@ public class Database extends SQLiteOpenHelper{
                 COLUMN_4
         };
         SQLiteDatabase db = getDataBase();
-        //Cursor alarmCursor = db.query(FINAL_TABLE, columns, COLUMN_0+"="+id, null, null, null, null);
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_1, newAlarm.getTimeString());
-        contentValues.put(COLUMN_2," ");
+        contentValues.put(COLUMN_2, newAlarm.getRingTone());
         contentValues.put(COLUMN_3, newAlarm.getWake_up_activity());
         contentValues.put(COLUMN_4, newAlarm.getDateString());
 
@@ -264,6 +263,7 @@ public class Database extends SQLiteOpenHelper{
 
     }
 
+    /* return the cursor of the database in order to build a simplecursor adaptor for later use */
     public static Cursor get(){
         String[] column = new String[]{
                 COLUMN_0,
@@ -279,4 +279,15 @@ public class Database extends SQLiteOpenHelper{
         }
         return c;
     }
+    /*
+    /* drop table method to drop both table
+    public static void dropTable(){
+        if(database2 != null && database2.isOpen()){
+            database2.close();
+        }
+        database2 = null;
+        database1 = null;
+
+    }
+    */
 }

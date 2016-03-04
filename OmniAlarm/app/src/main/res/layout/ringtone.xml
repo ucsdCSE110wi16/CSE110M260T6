@@ -1,11 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose Ring Tone"
-        android:id="@+id/choose_music" />
+        android:id="@+id/choose_music"
+        android:background="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:textSize="28dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.22"
+        android:background="#BDBDBD">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Father-JayChou"
+                android:id="@+id/song1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="#F7FE2E"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mermaid-JayChou"
+                android:id="@+id/song2"
+                android:layout_below="@+id/song1"
+                android:layout_centerHorizontal="true"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="#F7FE2E"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BC-JayChou"
+                android:id="@+id/song3"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="#F7FE2E"
+                android:layout_below="@+id/song2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/random"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/song5"
+                android:layout_centerHorizontal="true"
+                android:layout_alignRight="@+id/song3"
+                android:layout_alignEnd="@+id/song3"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/space"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/act"
+                android:layout_centerHorizontal="true"
+                android:layout_alignRight="@+id/song3"
+                android:layout_alignEnd="@+id/song3"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/act"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/ring"
+                android:layout_centerHorizontal="true"
+                android:layout_alignRight="@+id/song3"
+                android:layout_alignEnd="@+id/song3"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ring"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/ring"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_alignRight="@+id/song3"
+                android:layout_alignEnd="@+id/song3"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/time"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/ring"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_alignRight="@+id/song3"
+                android:layout_alignEnd="@+id/song3"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                />
+        </TableLayout>
+    </RelativeLayout>
 </LinearLayout>

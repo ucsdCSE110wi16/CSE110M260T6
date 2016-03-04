@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by GING_CHAN on 2/21/2016.
  */
@@ -18,7 +16,8 @@ public class mathUI extends AppCompatActivity {
     TextView firstNum;
     TextView secondNum;
     TextView operator;
-
+    ringtoneManager rtm;
+    String song;
 
     EditText input;
 
@@ -30,6 +29,17 @@ public class mathUI extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.math_solve);
+
+        //Intent startIntend = getIntent();
+        //update the song string based on intend
+        //song =
+
+        //create a new ringtone manager
+        rtm = new ringtoneManager();
+        //set ringtone manager
+        //rtm.setRingtone(this,song);
+
+        //rtm.playMusic();
 
         firstNum = (TextView) findViewById(R.id.first);
         firstNum.setText(math.firstToString());
@@ -54,8 +64,13 @@ public class mathUI extends AppCompatActivity {
                 if(math.checkAnswer(i)){
                     //stop the clock?
                     checkResult.setText("Correct");
+
+                    //when user correctly enter the answer, stop the music
+                    //rtm.pauseMusic();
+
+                    //jump back to main page
                     Intent backHomePage = new Intent(v.getContext(),cse110m260t6.omnialarm.main_ac.class);
-                    startActivityForResult(backHomePage,0);
+                    startActivity(backHomePage);
                 }
                 else
                     //reset the math???

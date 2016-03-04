@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#D8D8D8">
 
     <RelativeLayout
         android:layout_width="386dp"
@@ -14,7 +15,6 @@
             android:text="00"
             android:id="@+id/first"
             android:autoText="false"
-            android:textColor="#f60404"
             android:textIsSelectable="false"
             android:textSize="54sp"
             android:layout_centerHorizontal="true"
@@ -31,7 +31,8 @@
             android:layout_below="@+id/first"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +44,8 @@
             android:textIsSelectable="false"
             android:layout_marginTop="200dp"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +56,8 @@
             android:layout_below="@+id/second"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
 
         <EditText
             android:layout_width="wrap_content"
@@ -67,7 +70,9 @@
             android:layout_below="@+id/textView"
             android:layout_marginRight="150dp"
             android:layout_marginLeft="150dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#00FFFF"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -76,7 +81,9 @@
             android:id="@+id/checkResult"
             android:layout_below="@+id/inputNum"
             android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            />
 
     </RelativeLayout>
 
