@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -33,6 +34,7 @@ public class selectAlarm extends AppCompatActivity {
             Calendar.SATURDAY};
 
     int date;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,14 @@ public class selectAlarm extends AppCompatActivity {
         }
 
 
+        back = (Button)findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goback = new Intent(selectAlarm.this, cse110m260t6.omnialarm.main_ac.class);
+                startActivity(goback);
+            }
+        });
         //populate the list view with alarm
         populateListView();
 
@@ -157,9 +167,6 @@ public class selectAlarm extends AppCompatActivity {
                 String message = "You click alarm" + position;
                 //show which alarm is selected
                 Toast.makeText(selectAlarm.this, message, Toast.LENGTH_LONG).show();
-
-                Intent goback = new Intent(selectAlarm.this, cse110m260t6.omnialarm.main_ac.class);
-                startActivity(goback);
 
             }
         });
