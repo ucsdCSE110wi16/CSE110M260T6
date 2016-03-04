@@ -3,6 +3,7 @@ package cse110m260t6.omnialarm;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
  * Created by dadongjing on 3/2/16.
@@ -27,14 +28,17 @@ public class ringtoneManager {
     }
 */
     public static void playMusic(Context context, String text){
-        if(text == father){
+        if(text.equals(father)){
             ringtone = MediaPlayer.create(context,R.raw.father);
+            Log.e("Hey", "father");
         }
-        else if(text == mermaid){
+        else if(text.equals(mermaid)){
             ringtone = MediaPlayer.create(context,R.raw.mermaid);
+            Log.e("Hey", "mermaid");
         }
-        else if(text == bc){
+        else if(text.equals(bc)){
             ringtone = MediaPlayer.create(context,R.raw.bc);
+            Log.e("Hey", "bc");
         }
         ringtone.start();
     }

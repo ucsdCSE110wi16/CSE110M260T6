@@ -57,12 +57,11 @@ public class ringTone extends AppCompatActivity{
         S1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                songName = "JayChou Father";
+                songName = "father";
                 myAl.setRingTone(songName);
                 RingTone_animation.setText(songName);
                 RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this,android.R.anim.slide_in_left));
-                //String message  = "You select " + songName + " for ring tone";
-                //Toast.makeText(ringTone.this, message, Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -70,12 +69,11 @@ public class ringTone extends AppCompatActivity{
         S2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                songName = "JayChou Mermaid";
+                songName = "mermaid";
                 myAl.setRingTone(songName);
                 RingTone_animation.setText(songName);
                 RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this, android.R.anim.slide_in_left));
-                //String message  = "You select " + songName + " for ring tone";
-                //Toast.makeText(ringTone.this, message, Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -83,12 +81,11 @@ public class ringTone extends AppCompatActivity{
         S3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                songName = "JayChou BC";
+                songName = "bc";
                 myAl.setRingTone(songName);
                 RingTone_animation.setText(songName);
                 RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this, android.R.anim.slide_in_left));
-                //String message  = "You select " + songName + " for ring tone";
-                //Toast.makeText(ringTone.this, message, Toast.LENGTH_LONG).show();
+
             }
         });
 

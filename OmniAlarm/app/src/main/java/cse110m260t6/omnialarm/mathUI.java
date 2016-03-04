@@ -16,8 +16,7 @@ public class mathUI extends AppCompatActivity {
     TextView firstNum;
     TextView secondNum;
     TextView operator;
-    ringtoneManager rtm;
-    String song;
+
 
     EditText input;
 
@@ -30,16 +29,7 @@ public class mathUI extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.math_solve);
 
-        //Intent startIntend = getIntent();
-        //update the song string based on intend
-        //song =
 
-        //create a new ringtone manager
-        rtm = new ringtoneManager();
-        //set ringtone manager
-        //rtm.setRingtone(this,song);
-
-        //rtm.playMusic();
 
         firstNum = (TextView) findViewById(R.id.first);
         firstNum.setText(math.firstToString());
@@ -70,7 +60,7 @@ public class mathUI extends AppCompatActivity {
                         checkResult.setText("Correct");
 
                         //when user correctly enter the answer, stop the music
-                        //rtm.pauseMusic();
+                        ringtoneManager.pauseMusic();
 
                         //jump back to main page
                         Intent backHomePage = new Intent(v.getContext(), cse110m260t6.omnialarm.main_ac.class);
