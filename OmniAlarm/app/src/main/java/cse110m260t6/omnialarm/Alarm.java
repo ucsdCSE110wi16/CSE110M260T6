@@ -102,6 +102,7 @@ public class Alarm extends Application {
         //update the calendar
         alarmCal.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
         alarmCal.set(Calendar.MINUTE,Integer.parseInt(minute));
+        alarmCal.set(Calendar.MILLISECOND, 0);
 
 
         //update the alarm time

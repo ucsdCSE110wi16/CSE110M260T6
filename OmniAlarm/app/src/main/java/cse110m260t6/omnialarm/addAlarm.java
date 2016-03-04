@@ -58,6 +58,7 @@ public class addAlarm extends AppCompatActivity{
                             Calendar myCa = Calendar.getInstance();
                             myCa.set(Calendar.HOUR_OF_DAY,hour_int);
                             myCa.set(Calendar.MINUTE,minute_int);
+                            myCa.set(Calendar.MILLISECOND, 0);
 
                             animation.setText(hour + ":" + minute);
                             animation.startAnimation(AnimationUtils.loadAnimation(addAlarm.this,android.R.anim.slide_in_left));

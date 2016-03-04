@@ -59,24 +59,27 @@ public class mathUI extends AppCompatActivity {
                 //checks the user input
 
                 String s = input.getText().toString();
-                int i = Integer.parseInt(s);
-
-                if(math.checkAnswer(i)){
-                    //stop the clock?
-                    checkResult.setText("Correct");
-
-                    //when user correctly enter the answer, stop the music
-                    //rtm.pauseMusic();
-
-                    //jump back to main page
-                    Intent backHomePage = new Intent(v.getContext(),cse110m260t6.omnialarm.main_ac.class);
-                    startActivity(backHomePage);
-                }
-                else
-                    //reset the math???
+                if (s.equals("")) {
                     checkResult.setText("Incorrect");
-            }
+                } else {
 
+                    int i = Integer.parseInt(s);
+
+                    if (math.checkAnswer(i)) {
+                        //stop the clock?
+                        checkResult.setText("Correct");
+
+                        //when user correctly enter the answer, stop the music
+                        //rtm.pauseMusic();
+
+                        //jump back to main page
+                        Intent backHomePage = new Intent(v.getContext(), cse110m260t6.omnialarm.main_ac.class);
+                        startActivity(backHomePage);
+                    } else
+                        //reset the math???
+                        checkResult.setText("Incorrect");
+                }
+            }
         });
     }
 
