@@ -113,6 +113,15 @@ public class main_ac extends AppCompatActivity {
             }
         });
 
+        Button delete_by_id = (Button)findViewById(R.id.delete_by_id);
+        delete_by_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent delete = new Intent(v.getContext(), cse110m260t6.omnialarm.deleteAlarm.class);
+                startActivity(delete);
+            }
+        });
+
         /*
         //check final database size
         if(Database.checkForExist() == true){

@@ -24,6 +24,7 @@
         <activity android:name=".mathUI"></activity>
         <activity android:name=".selectAlarm"></activity>
         <activity android:name=".ReverseStringUI"></activity>
+        <activity android:name=".deleteAlarm"></activity>
         <receiver android:name=".alarmReceiver"/>
 
     </application>

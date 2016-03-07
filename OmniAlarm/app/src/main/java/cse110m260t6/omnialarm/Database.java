@@ -161,7 +161,7 @@ public class Database extends SQLiteOpenHelper{
 
     public static Integer deleteAlarm(String id){
         SQLiteDatabase db = getDataBase();
-        return db.delete(FINAL_TABLE, "ID = ?", new String[]{id});
+        return db.delete(FINAL_TABLE, COLUMN_0 + "=" + id, null);
     }
 
     /*check for if table is empty */
