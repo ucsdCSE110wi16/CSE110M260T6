@@ -34,5 +34,16 @@ public class alarmReceiver extends BroadcastReceiver {
             //jump to solve_math_for wake up activity
             context.startActivity(jumpToMath);
         }
+
+        if(activity.equals("Reverse the String")) {
+
+            //start new activity
+            Intent jumpToString = new Intent(context, cse110m260t6.omnialarm.ReverseStringUI.class);
+
+            //update its flag
+            jumpToString.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //jump to solve_math_for wake up activity
+            context.startActivity(jumpToString);
+        }
     }
 }

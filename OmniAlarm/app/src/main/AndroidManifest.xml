@@ -23,6 +23,7 @@
         <activity android:name=".wakeupAc"></activity>
         <activity android:name=".mathUI"></activity>
         <activity android:name=".selectAlarm"></activity>
+        <activity android:name=".ReverseStringUI"></activity>
         <receiver android:name=".alarmReceiver"/>
 
     </application>

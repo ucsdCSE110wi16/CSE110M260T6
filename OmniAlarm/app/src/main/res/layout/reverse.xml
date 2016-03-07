@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BDBDBD">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="unenthusiastically"
+        android:id="@+id/string_prompt"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/string_prompt"
+        android:layout_alignStart="@+id/string_prompt"
+        android:layout_alignRight="@+id/string_prompt"
+        android:layout_alignEnd="@+id/string_prompt"
+        android:hint="some input"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="check result"
+        android:id="@+id/check"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="88dp"
+        android:background="#7F8C8D"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+
+
+</RelativeLayout>
