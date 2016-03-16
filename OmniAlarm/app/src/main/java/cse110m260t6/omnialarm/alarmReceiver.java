@@ -18,32 +18,34 @@ public class alarmReceiver extends BroadcastReceiver {
         String id = intent.getStringExtra("id");
         Alarm myAl = Database.getByID(id);
 
-        String activity = myAl.getWake_up_activity();
+        if(myAl != null) {
+            String activity = myAl.getWake_up_activity();
 
-        String ringtone = myAl.getRingTone();
+            String ringtone = myAl.getRingTone();
 
-        ringtoneManager.playMusic(context, ringtone);
+            ringtoneManager.playMusic(context, ringtone);
 
-        if(activity.equals("Solve Math Problem")) {
+            if (activity.equals("Solve Math Problem")) {
 
-            //start new activity
-            Intent jumpToMath = new Intent(context, cse110m260t6.omnialarm.mathUI.class);
+                //start new activity
+                Intent jumpToMath = new Intent(context, cse110m260t6.omnialarm.mathUI.class);
 
-            //update its flag
-            jumpToMath.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //jump to solve_math_for wake up activity
-            context.startActivity(jumpToMath);
-        }
+                //update its flag
+                jumpToMath.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                //jump to solve_math_for wake up activity
+                context.startActivity(jumpToMath);
+            }
 
-        if(activity.equals("Reverse the String")) {
+            if (activity.equals("Reverse the String")) {
 
-            //start new activity
-            Intent jumpToString = new Intent(context, cse110m260t6.omnialarm.ReverseStringUI.class);
+                //start new activity
+                Intent jumpToString = new Intent(context, cse110m260t6.omnialarm.ReverseStringUI.class);
 
-            //update its flag
-            jumpToString.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //jump to solve_math_for wake up activity
-            context.startActivity(jumpToString);
+                //update its flag
+                jumpToString.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                //jump to solve_math_for wake up activity
+                context.startActivity(jumpToString);
+            }
         }
     }
 }

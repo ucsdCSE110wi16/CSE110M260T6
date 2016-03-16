@@ -24,6 +24,7 @@ public class ringTone extends AppCompatActivity{
     TextView Time_animation;
     TextView RingTone_animation;
     TextView Act_animation;
+    static int checkForClick = 0;
 
 
 
@@ -47,12 +48,7 @@ public class ringTone extends AppCompatActivity{
 
         Time_animation.setText(myAl.getTimeString());
 
-        /*
-        //tell the user to select a ringtone
-        String message = "Please select a ringtone";
-        Toast.makeText(ringTone.this,message,Toast.LENGTH_LONG);
 
-*/
         //logic for first song button
         S1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +56,8 @@ public class ringTone extends AppCompatActivity{
                 songName = "father";
                 myAl.setRingTone(songName);
                 RingTone_animation.setText(songName);
-                RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this,android.R.anim.slide_in_left));
+                RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this, android.R.anim.slide_in_left));
+                checkForClick = 1;
 
             }
         });
@@ -73,6 +70,7 @@ public class ringTone extends AppCompatActivity{
                 myAl.setRingTone(songName);
                 RingTone_animation.setText(songName);
                 RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this, android.R.anim.slide_in_left));
+                checkForClick = 1;
 
             }
         });
@@ -85,6 +83,7 @@ public class ringTone extends AppCompatActivity{
                 myAl.setRingTone(songName);
                 RingTone_animation.setText(songName);
                 RingTone_animation.startAnimation(AnimationUtils.loadAnimation(ringTone.this, android.R.anim.slide_in_left));
+                checkForClick = 1;
 
             }
         });
@@ -108,8 +107,9 @@ public class ringTone extends AppCompatActivity{
                 }
                 //if user did not select the ringtone, ask the user to select ringtone
                 else{
-                    Intent jumAc = new Intent(v.getContext(), cse110m260t6.omnialarm.ringTone.class);
-                    startActivity(jumAc);
+                    String message = "Please choose a ring tone";
+                    Toast.makeText(ringTone.this,message, Toast.LENGTH_LONG).show();
+
                 }
             }
         });

@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -49,6 +50,7 @@ public class addAlarm extends AppCompatActivity{
                     //get the temp alarm from database
                     Alarm myAl = Database.getTempAlarm();
 
+                    checkForClick = 0;
                     if(!hour.equals("")  && !minute.equals("")){
                         int hour_int = Integer.parseInt(hour);
                         int minute_int = Integer.parseInt(minute);
@@ -72,9 +74,7 @@ public class addAlarm extends AppCompatActivity{
                             //update checkForClick
                             checkForClick = 1;
 
-                            //jump to next page that prompt user to enter ring tone
-                            //Intent jumpActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.ringTone.class);
-                            //startActivity(jumpActivity);
+
                         }
                         else{
                             String errorMes = new String("Time NOT VALID!");
@@ -97,53 +97,17 @@ public class addAlarm extends AppCompatActivity{
             choose_time.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    //get the hour and minute user specified
-                    T1 = (EditText)findViewById(R.id.hour);
-                    T2 = (EditText)findViewById(R.id.minute);
-                    T3 = (TextView)findViewById(R.id.time_not_valid);
-                    String hour = T1.getText().toString();
-                    String minute = T2.getText().toString();
-                    //get the temp alarm from database
-                    Alarm myAl = Database.getTempAlarm();
 
-                    if(!hour.equals("")  && !minute.equals("")){
-                        int hour_int = Integer.parseInt(hour);
-                        int minute_int = Integer.parseInt(minute);
-                        if(hour_int < 24 && hour_int >= 0 && minute_int >= 0 && minute_int < 60){
-
-                            //set up the calendar object of the specified hour and minute
-                            Calendar myCa = Calendar.getInstance();
-                            myCa.set(Calendar.HOUR_OF_DAY,hour_int);
-                            myCa.set(Calendar.MINUTE,minute_int);
-
-                            animation.setText(hour + ":" + minute);
-                            animation.startAnimation(AnimationUtils.loadAnimation(addAlarm.this,android.R.anim.slide_in_left));
-
-                            //update the alarm time
-                            myAl.setTime(myCa);
-
-                            //update the temp alarm in the database
-                            Database.updateTemp(myAl);
-
-                            //jump to next page that prompt user to enter ring tone
-                            Intent jumpActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.ringTone.class);
-                            startActivity(jumpActivity);
-                        }
-                        else{
-                            String errorMes = new String("Time NOT VALID!");
-                            T3.setText(errorMes);
-                        }
-                    }
-                    else{
-                        String errorMessage = new String("Please INPUT TIME");
-                        T3.setText(errorMessage);
-                    }
-                    */
                     if(checkForClick != 0){
+                        checkForClick = 0;
                         //jump to next page that prompt user to enter ring tone
                         Intent jumpActivity = new Intent(v.getContext(), cse110m260t6.omnialarm.ringTone.class);
                         startActivity(jumpActivity);
+                    }
+                    else{
+
+                        String message = "Please confirm a time";
+                        Toast.makeText(addAlarm.this,message, Toast.LENGTH_LONG).show();
                     }
 
                 }

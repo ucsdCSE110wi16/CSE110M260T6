@@ -22,6 +22,7 @@ public class wakeupAc extends AppCompatActivity{
     TextView time;
     TextView ringtone;
     TextView activity_animation;
+    static int checkForClick = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,10 @@ public class wakeupAc extends AppCompatActivity{
             public void onClick(View v) {
                 activity = "Solve Math Problem";
                 myAl.setWake_up_activity(activity);
-                //String message  = "You select " + activity + " to wake up";
-                //Toast.makeText(wakeupAc.this, message, Toast.LENGTH_LONG).show();
+
                 activity_animation.setText(activity);
                 activity_animation.startAnimation(AnimationUtils.loadAnimation(wakeupAc.this, android.R.anim.slide_in_left));
+                checkForClick = 1;
             }
         });
 
@@ -61,10 +62,10 @@ public class wakeupAc extends AppCompatActivity{
             public void onClick(View v) {
                 activity = "Reverse the String";
                 myAl.setWake_up_activity(activity);
-                //String message  = "You select " + activity + " to wake up";
-                //Toast.makeText(wakeupAc.this, message, Toast.LENGTH_LONG).show();
+
                 activity_animation.setText(activity);
                 activity_animation.startAnimation(AnimationUtils.loadAnimation(wakeupAc.this, android.R.anim.slide_in_left));
+                checkForClick = 1;
             }
         });
 
@@ -77,11 +78,21 @@ public class wakeupAc extends AppCompatActivity{
             public void onClick(View v) {
 
                 //store the alarm back to the final table
-                Database.insertAlarm(myAl);
+                //Database.insertAlarm(myAl);
 
-                //jump back to main page
-                Intent jumAc = new Intent(v.getContext(),cse110m260t6.omnialarm.main_ac.class);
-                startActivity(jumAc);
+                if(checkForClick != 0) {
+                    //store the alarm back to the final table
+                    Database.insertAlarm(myAl);
+                    //jump back to main page
+                    Intent jumAc = new Intent(v.getContext(), cse110m260t6.omnialarm.main_ac.class);
+                    startActivity(jumAc);
+                }
+                else{
+
+                    String message = "Please choose an activity";
+                    Toast.makeText(wakeupAc.this,message, Toast.LENGTH_LONG).show();
+
+                }
             }
         });
     }
