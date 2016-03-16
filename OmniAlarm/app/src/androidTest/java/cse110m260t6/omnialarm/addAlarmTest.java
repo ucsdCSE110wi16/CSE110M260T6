@@ -1,5 +1,8 @@
 package cse110m260t6.omnialarm;
-/*
+
+/**
+ * Created by dadongjing on 3/16/16.
+ */
 import android.app.Application;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewAssertion;
@@ -79,4 +82,3 @@ public class addAlarmTest extends ActivityInstrumentationTestCase2<addAlarm>{
         testJump();
     }
 }
-*/
