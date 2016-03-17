@@ -19,9 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    /*
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    */
 }
 
 dependencies {
@@ -29,14 +31,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    testCompile "org.mockito:mockito-core:1.9.5"
+    compile 'com.jakewharton:butterknife:6.1.0'
+    //testCompile "org.mockito:mockito-core:1.9.5"
 
-    testCompile 'com.android.support:support-annotations:23.1.1'
+    androidTestCompile 'com.android.support:support-annotations:23.1.1'
 
-    testCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 
-    testCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
 
-    testCompile 'com.android.suppport.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
 
 }
